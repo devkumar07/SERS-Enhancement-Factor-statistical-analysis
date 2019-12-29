@@ -6,6 +6,10 @@ from EFCalculation import *
 
 vtkInput = 'Data/'+input('Enter the VTK file input: ')
 
+radius = input('Enter the radius of the structure: ')
+
+mesh_size = input('Enter the mesh size: ')
+
 data = read_vtk(vtkInput)
 
 coordinates = get_coordinates_vector(data)

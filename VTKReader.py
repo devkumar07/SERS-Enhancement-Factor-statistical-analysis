@@ -1,3 +1,4 @@
+#This script has functions to read VTK files
 import numpy as np
 import pyvista
 
@@ -7,5 +8,5 @@ def read_vtk(file_name):
 def get_coordinates_vector(data):
     return data.points
 
-def get_electric_field(data):
+def get_electric_field_vector(data):
     return data.point_arrays['Intensity']

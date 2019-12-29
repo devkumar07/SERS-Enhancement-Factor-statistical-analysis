@@ -17,4 +17,10 @@ def radius_threshold(x,y,radius):
     if r == radius:
         return True
     return False
+def get_z_interval(intensity_vector):
+    return int(len(intensity_vector)**(1./3))
 
+def convert_to_nm(coordinate_vector):
+    for i in range(0,len(coordinate_vector)):
+        coordinate_vector[i] = coordinate_vector[i] * 1000
+    return coordinate_vector

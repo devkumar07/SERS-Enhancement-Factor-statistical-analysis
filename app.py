@@ -16,10 +16,10 @@ coordinates = get_coordinates_vector(data)
 
 EField = get_electric_field_vector(data)
 
+coordinates = convert_to_nm(coordinates)
+
 print(coordinates)
 
 print(get_x_coordinate(coordinates,2))
 
 print(EField)
-
-data.plot(show_grid=True)

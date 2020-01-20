@@ -3,18 +3,26 @@ from tkinter import filedialog, messagebox
 from VTKReader import *
 from EFCalculation import *
 
+
 def resultMessage(message):
     popup = tk.Toplevel()
     popup.title("Result")
     label = tk.Label(popup, text=message) #Can add a font arg here
     label.pack(side="top", fill="x", pady=10)
-    B1 = tk.Button(popup, text="Okay", command = popup.destroy)
+    B1 = tk.Button(popup, text="Close", command = popup.destroy)
     B1.pack()
     popup.mainloop()
 
+def find_file(event=None):
+    F = filedialog.askopenfile(
+            initialdir="/",
+            title="Select DDSCAT VTR result")
+    master.filename = F.name
+
+
 def execute(event=None):
-    f_name = 'Data/'+filename.get()
-    data = read_vtk(f_name)
+    print(master.filename)
+    data = read_vtk(master.filename)
     coordinates = get_coordinates_vector(data)
     coordinates = convert_to_nm(coordinates)
     EField = get_electric_field_vector(data)
@@ -24,13 +32,11 @@ def execute(event=None):
 
 master = tk.Tk()
 
-tk.Label(master, text="Enter the name of the VTR file").grid(row=0)
+master.filename =''
 tk.Label(master, text="Radius of Center Particle").grid(row=1)
 tk.Label(master, text="Radius of Big Particles").grid(row=2)
 tk.Label(master, text="Gap Junction").grid(row=3)
 
-filename = tk.Entry(master)
-filename.grid(row=0, column=1)
 small_radius = tk.Entry(master)
 small_radius.grid(row=1, column=1)
 big_radius = tk.Entry(master)
@@ -38,7 +44,10 @@ big_radius.grid(row=2, column=1)
 gap_junction = tk.Entry(master)
 gap_junction.grid(row=3, column=1)
 
-tk.Button(master, text='Quit', command=master.quit).grid(row=4, column=0, sticky=tk.W, pady=4)
-tk.Button(master, text='Perform analysis', command=execute).grid(row=4, column=1, sticky=tk.W, pady=4)
+tk.Button(
+        master, text="Import DDSCAT VTR Result",
+        command=find_file).grid(column=0, row=5, padx=20, pady=5)
+tk.Button(master, text='Quit', command=master.quit).grid(row=7, column=0, sticky=tk.W, pady=4)
+tk.Button(master, text='Perform analysis', command=execute).grid(row=7, column=1, sticky=tk.W, pady=4)
 
 tk.mainloop()

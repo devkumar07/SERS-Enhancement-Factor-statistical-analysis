@@ -2,7 +2,7 @@
 from VTKReader import *
 from EFCalculation import *
 
-vtkInput = 'Data/'+input('Enter the VTK file input: ')
+vtkInput = '/Users/dev/Desktop/MACES/SERS-Enhancement-Factor-statistical-analysis/Data/Trimer.vtr'
 
 small_radius = input('Enter the small radius of the structure: ')
 

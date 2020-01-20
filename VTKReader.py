@@ -1,5 +1,4 @@
 #This script has functions to read VTK files
-import numpy as np
 import pyvista
 
 def read_vtk(file_name):
